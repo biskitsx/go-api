@@ -19,6 +19,7 @@ type Post struct {
 	gorm.Model
 	Title  string `json:"title"`
 	UserID uint   `json:"user_id"` // Foreign key referencing User.ID
+	User   User
 }
 
 var Db *gorm.DB
