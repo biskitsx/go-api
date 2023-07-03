@@ -4,9 +4,15 @@ import (
 	"github.com/biskitsx/go-api/controllers"
 	"github.com/biskitsx/go-api/middleware"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func SetupRoutes(app *fiber.App) {
+	app.Use(logger.New(logger.Config{
+		// For more options, see the Config section
+		Format: "${pid} ${locals:requestid} ${status} - ${method} ${path}​\n",
+	}))
+
 	// auth
 	app.Post("/api/auth/register", controllers.Register)
 	app.Post("/api/auth/login", controllers.Login)
